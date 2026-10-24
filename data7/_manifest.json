@@ -9,6 +9,16 @@
   "first": "2022-06.csv.xz.none",
   "last": "2026-10.csv.xz"
  },
+ "depth2/btcusdt_bookdepth_1m": {
+  "files": 53,
+  "first": "2022-06.csv.xz.none",
+  "last": "2026-10.csv.xz"
+ },
+ "depth2/ethusdt_bookdepth_1m": {
+  "files": 53,
+  "first": "2022-06.csv.xz.none",
+  "last": "2026-10.csv.xz"
+ },
  "funding": {
   "files": 2,
   "first": "BTCUSDT_funding.csv.xz",
