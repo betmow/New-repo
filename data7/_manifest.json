@@ -1,1 +1,62 @@
-{}
+{
+ "depth/btcusdt_bookdepth_1m": {
+  "files": 53,
+  "first": "2022-06.csv.xz.none",
+  "last": "2026-10.csv.xz"
+ },
+ "depth/ethusdt_bookdepth_1m": {
+  "files": 53,
+  "first": "2022-06.csv.xz.none",
+  "last": "2026-10.csv.xz"
+ },
+ "funding": {
+  "files": 2,
+  "first": "BTCUSDT_funding.csv.xz",
+  "last": "ETHUSDT_funding.csv.xz"
+ },
+ "klines/btcusdt_perp_1m": {
+  "files": 53,
+  "first": "2022-06.csv.xz",
+  "last": "2026-10.csv.xz"
+ },
+ "klines/btcusdt_spot_1m": {
+  "files": 53,
+  "first": "2022-06.csv.xz",
+  "last": "2026-10.csv.xz"
+ },
+ "klines/ethusdt_perp_1m": {
+  "files": 53,
+  "first": "2022-06.csv.xz",
+  "last": "2026-10.csv.xz"
+ },
+ "klines/ethusdt_spot_1m": {
+  "files": 53,
+  "first": "2022-06.csv.xz",
+  "last": "2026-10.csv.xz"
+ },
+ "metrics/btcusdt_metrics_5m": {
+  "files": 53,
+  "first": "2022-06.csv.xz",
+  "last": "2026-10.csv.xz"
+ },
+ "metrics/ethusdt_metrics_5m": {
+  "files": 53,
+  "first": "2022-06.csv.xz",
+  "last": "2026-10.csv.xz"
+ },
+ "misc": {
+  "files": 1,
+  "first": "stablecoin_supply_daily.csv.xz",
+  "last": "stablecoin_supply_daily.csv.xz"
+ },
+ "premium/btcusdt_premium_1m": {
+  "files": 53,
+  "first": "2022-06.csv.xz",
+  "last": "2026-10.csv.xz"
+ },
+ "premium/ethusdt_premium_1m": {
+  "files": 53,
+  "first": "2022-06.csv.xz",
+  "last": "2026-10.csv.xz"
+ }
+}
