@@ -19,10 +19,15 @@
   "first": "2022-06.csv.xz.none",
   "last": "2026-10.csv.xz"
  },
+ "depth2/solusdt_bookdepth_1m": {
+  "files": 53,
+  "first": "2022-06.csv.xz.none",
+  "last": "2026-10.csv.xz"
+ },
  "funding": {
-  "files": 2,
+  "files": 3,
   "first": "BTCUSDT_funding.csv.xz",
-  "last": "ETHUSDT_funding.csv.xz"
+  "last": "SOLUSDT_funding.csv.xz"
  },
  "klines/btcusdt_perp_1m": {
   "files": 53,
@@ -44,12 +49,27 @@
   "first": "2022-06.csv.xz",
   "last": "2026-10.csv.xz"
  },
+ "klines/solusdt_perp_1m": {
+  "files": 53,
+  "first": "2022-06.csv.xz",
+  "last": "2026-10.csv.xz"
+ },
+ "klines/solusdt_spot_1m": {
+  "files": 53,
+  "first": "2022-06.csv.xz",
+  "last": "2026-10.csv.xz"
+ },
  "metrics/btcusdt_metrics_5m": {
   "files": 53,
   "first": "2022-06.csv.xz",
   "last": "2026-10.csv.xz"
  },
  "metrics/ethusdt_metrics_5m": {
+  "files": 53,
+  "first": "2022-06.csv.xz",
+  "last": "2026-10.csv.xz"
+ },
+ "metrics/solusdt_metrics_5m": {
   "files": 53,
   "first": "2022-06.csv.xz",
   "last": "2026-10.csv.xz"
@@ -65,6 +85,11 @@
   "last": "2026-10.csv.xz"
  },
  "premium/ethusdt_premium_1m": {
+  "files": 53,
+  "first": "2022-06.csv.xz",
+  "last": "2026-10.csv.xz"
+ },
+ "premium/solusdt_premium_1m": {
   "files": 53,
   "first": "2022-06.csv.xz",
   "last": "2026-10.csv.xz"
