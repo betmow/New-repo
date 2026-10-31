@@ -57,10 +57,10 @@ jobs:
         if: github.event.inputs.mode == 'run'
         run: |
           f=$(ls footprint/${{ github.event.inputs.sym }}/bars/*.csv.xz | tail -1); ym=$(basename $f .csv.xz)
-          python verify_footprint.py ${{ github.event.inputs.sym }} $ym | tee -a footprint/_verify_${{ github.event.inputs.sym }}.txt || true
+          python verify_footprint.py ${{ github.event.inputs.sym }} $ym | tee footprint/_verify_${{ github.event.inputs.sym }}_${{ matrix.s }}.txt || true
       - name: save results
         if: always()
         run: |
           git config user.name "data-bot"; git config user.email "bot@users.noreply.github.com"
           git add footprint; git commit -m "footprint ${{ github.event.inputs.sym }} ${{ matrix.s }}..${{ matrix.e }}" || echo "nothing to commit"
-          for i in 1 2 3 4 5; do git pull --rebase -q && git push && break || sleep $((RANDOM % 20 + 5)); done
+          ok=0; for i in 1 2 3 4 5 6; do git pull --rebase -q && git push -q && ok=1 && break; git rebase --abort 2>/dev/null; sleep $((RANDOM % 20 + 5)); done; [ $ok = 1 ]
