@@ -121,4 +121,26 @@ def probe():
         r = req("HEAD", url_month(y, m)); lines.append(f"month  {y}-{m:02d}  " + (f"OK {int(r.headers.get('Content-Length', 0))/1e6:.0f} MB zipped" if r is not None else "MISSING"))
     print("\n".join(lines)); open(f"{OUT}/_probe.txt", "w").write("\n".join(lines) + "\n")
 def selftest():
-    rng = np.random.default_rng(1); n = 300_000; t0 = int(pd.Timestamp("2024-03-05", t
+    rng = np.random.default_rng(1); n = 300_000; t0 = int(pd.Timestamp("2024-03-05", tz="UTC").timestamp() * 1000)
+    df = pd.DataFrame(dict(agg_trade_id=np.arange(n), price=np.round(60000 + np.cumsum(rng.normal(0, 3, n)), 1), quantity=np.round(rng.exponential(0.05, n) * np.where(rng.random(n) < 0.002, 40, 1), 3), first_trade_id=0, last_trade_id=0,
+                           transact_time=t0 + np.sort(rng.integers(0, 86_400_000, n)), is_buyer_maker=rng.choice(["true", "false"], n)))
+    for hdr in (True, False):
+        buf = io.BytesIO(df.to_csv(index=False, header=hdr).encode()); lv, br, bg = process_csv(buf)
+        assert abs(lv.buy.sum() + lv.sell.sum() - df.quantity.sum()) < 1e-6, "volume mismatch"
+        assert abs(br.buy.sum() - df.quantity[df.is_buyer_maker == "false"].sum()) < 1e-6, "buy mismatch"
+        assert (lv.groupby("bar")[["buy", "sell"]].sum().sum(axis=1) - br.set_index("bar").eval("buy+sell")).abs().max() < 1e-6
+        l15, b15 = to15(lv, br); assert abs(l15.buy.sum() - lv.buy.sum()) < 1e-6 and len(b15) == 96 and abs(b15.buy.sum() - br.buy.sum()) < 1e-6
+        st = add_stats(l15, b15); assert len(st) == 96 and st.poc.notna().all(); st1 = add_stats(lv, br); assert len(st1) == len(br)
+    big = df[df.quantity >= EDGES[0]]; tot = sum(bg[c].sum() for c in bg.columns if c[0] == "v" and c[-1] in "bs")
+    assert abs(tot - big.quantity.sum()) < 1e-6, "big-trade volume mismatch"; assert bg.minute.is_monotonic_increasing
+    print("selftest OK:", len(lv), "1-minute level rows,", len(br), "minutes,", len(b15), "15m bars,", len(bg), "minutes with big trades")
+def main():
+    if MODE == "probe": return probe()
+    if MODE == "selftest": return selftest()
+    a = tuple(int(x) for x in os.environ.get("START", "2022-06").split("-")); today = dt.date.today()
+    e = os.environ.get("END") or f"{today.year}-{today.month:02d}"; b = tuple(int(x) for x in e.split("-")); y, m = a
+    with ProcessPoolExecutor(WORKERS) as pool:
+        while (y, m) <= b:
+            do_month(y, m, pool); m += 1
+            if m == 13: y, m = y + 1, 1
+if __name__ == "__main__": main()
