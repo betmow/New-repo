@@ -1,0 +1,12 @@
+probe 2026-10-31 21:46 UTC  BTCUSDT
+daily  2021-01-04  OK 31 MB zipped
+daily  2022-06-01  OK 25 MB zipped
+daily  2023-01-16  OK 19 MB zipped
+daily  2024-06-03  OK 15 MB zipped
+daily  2025-06-02  OK 15 MB zipped
+daily  2026-10-28  MISSING (404/403)
+daily  2026-10-29  OK 22 MB zipped
+daily  2026-10-30  OK 26 MB zipped
+month  2022-06  OK 978 MB zipped
+month  2024-01  OK 523 MB zipped
+month  2026-09  OK 437 MB zipped
