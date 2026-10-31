@@ -1,0 +1,66 @@
+name: fetch-footprint
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "probe (run this first) | run | selftest"
+        default: "probe"
+      sym:
+        description: "BTCUSDT or ETHUSDT"
+        default: "BTCUSDT"
+      start:
+        description: "first month (YYYY-MM)"
+        default: "2022-06"
+      end:
+        description: "last month (YYYY-MM), blank = current month"
+        default: ""
+permissions:
+  contents: write
+jobs:
+  prep:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.m.outputs.matrix }}
+    steps:
+      - id: m
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, datetime as dt
+          a = "${{ github.event.inputs.start }}"; b = "${{ github.event.inputs.end }}" or dt.date.today().strftime("%Y-%m")
+          if "${{ github.event.inputs.mode }}" != "run": print('matrix={"include":[{"s":"%s","e":"%s"}]}' % (a, a)); raise SystemExit
+          ya, ma = map(int, a.split("-")); yb, mb = map(int, b.split("-")); inc = []
+          for y in range(ya, yb + 1):
+              s = f"{y}-{ma:02d}" if y == ya else f"{y}-01"; e = f"{y}-{mb:02d}" if y == yb else f"{y}-12"; inc.append({"s": s, "e": e})
+          print("matrix=" + json.dumps({"include": inc}))
+          PY
+  fetch:
+    needs: prep
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.prep.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install --upgrade pip requests pandas numpy
+      - run: python fetch_footprint.py
+        env:
+          MODE: ${{ github.event.inputs.mode }}
+          SYM: ${{ github.event.inputs.sym }}
+          START: ${{ matrix.s }}
+          END: ${{ matrix.e }}
+          WORKERS: "3"
+      - name: verify against klines (last month processed)
+        if: github.event.inputs.mode == 'run'
+        run: |
+          f=$(ls footprint/${{ github.event.inputs.sym }}/bars/*.csv.xz | tail -1); ym=$(basename $f .csv.xz)
+          python verify_footprint.py ${{ github.event.inputs.sym }} $ym | tee -a footprint/_verify_${{ github.event.inputs.sym }}.txt || true
+      - name: save results
+        if: always()
+        run: |
+          git config user.name "data-bot"; git config user.email "bot@users.noreply.github.com"
+          git add footprint; git commit -m "footprint ${{ github.event.inputs.sym }} ${{ matrix.s }}..${{ matrix.e }}" || echo "nothing to commit"
+          for i in 1 2 3 4 5; do git pull --rebase -q && git push && break || sleep $((RANDOM % 20 + 5)); done
