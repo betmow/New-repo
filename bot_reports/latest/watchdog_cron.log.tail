@@ -1,14 +1,4 @@
 [quick] checks: {'bot': 'ok', 'collector': 'ok'}
-[quick] checks: {'bot': 'ok', 'collector': 'ok'}
-[quick] checks: {'bot': 'ok', 'collector': 'ok'}
-[quick] checks: {'bot': 'ok', 'collector': 'ok'}
-[quick] checks: {'bot': 'ok', 'collector': 'ok'}
-[quick] checks: {'bot': 'ok', 'collector': 'ok'}
-[quick] checks: {'bot': 'ok', 'collector': 'ok'}
-[quick] checks: {'bot': 'ok', 'collector': 'ok'}
-[quick] checks: {'bot': 'ok', 'collector': 'ok'}
-[quick] checks: {'bot': 'ok', 'collector': 'ok'}
-[quick] checks: {'bot': 'ok', 'collector': 'ok'}
 /root/btc-shadow/watchdog.py:116: Pandas4Warning: The 'lsuffix' and 'rsuffix' keywords in DataFrame.join are deprecated and will be removed in a future version. Use the 'suffixes' keyword instead.
   j = cur.join(truth, rsuffix="_t", how="inner")  # noqa
 [daily] checks: {'bot': 'ok', 'collector': 'ok', 'bars': 'ok', 'parity': 'ok', 'depth': 'ok', 'rollup': 'ok', 'disk': 'ok', 'swing': 'ok', 'sanity': 'ok'}
@@ -57,4 +47,14 @@ snapshot uploaded to GitHub bot_reports/latest/
 [quick] checks: {'bot': 'ok', 'collector': 'ok'}
 [quick] checks: {'bot': 'ok', 'collector': 'ok'}
 snapshot uploaded to GitHub bot_reports/latest/
+[quick] checks: {'bot': 'ok', 'collector': 'ok'}
+snapshot uploaded to GitHub bot_reports/latest/
+[quick] checks: {'bot': 'ok', 'collector': 'ok'}
+[quick] checks: {'bot': 'ok', 'collector': 'ok'}
+[quick] checks: {'bot': 'ok', 'collector': 'ok'}
+[quick] checks: {'bot': 'ok', 'collector': 'ok'}
+[quick] checks: {'bot': 'ok', 'collector': 'ok'}
+[quick] checks: {'bot': 'ok', 'collector': 'ok'}
+[quick] checks: {'bot': 'ok', 'collector': 'ok'}
+[quick] checks: {'bot': 'ok', 'collector': 'ok'}
 [quick] checks: {'bot': 'ok', 'collector': 'ok'}
