@@ -1,0 +1,67 @@
+name: fetch-transcripts
+on:
+  workflow_dispatch:
+    inputs:
+      queries:
+        description: 'One per line: a YouTube video/playlist/channel URL, or a search like  ytsearch20:fabio valentini footprint'
+        required: true
+        default: 'ytsearch15:fabio valentini footprint strategy'
+      max_per_line:
+        description: 'max videos taken from each line'
+        default: '20'
+permissions:
+  contents: write
+jobs:
+  go:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: install
+        run: pip install -q -U yt-dlp
+      - name: download captions (no video)
+        env:
+          Q: ${{ github.event.inputs.queries }}
+          MAXN: ${{ github.event.inputs.max_per_line }}
+        run: |
+          mkdir -p transcripts/raw
+          echo "$Q" | while IFS= read -r line; do
+            [ -z "$line" ] && continue
+            echo "== $line"
+            yt-dlp --skip-download --write-auto-subs --write-subs --sub-langs "en.*,en" --sub-format vtt --write-info-json \
+              --playlist-end "$MAXN" --sleep-requests 1 --sleep-subtitles 1 --ignore-errors --no-warnings \
+              -o "transcripts/raw/%(id)s.%(ext)s" "$line" || true
+          done
+          ls transcripts/raw | head -50; echo "files: $(ls transcripts/raw | wc -l)"
+      - name: clean to text
+        run: |
+          python3 - <<'PY'
+          import glob, json, os, re
+          out = []
+          for j in sorted(glob.glob('transcripts/raw/*.info.json')):
+              vid = os.path.basename(j).split('.')[0]; info = json.load(open(j))
+              vtts = sorted(glob.glob(f'transcripts/raw/{vid}.*.vtt'))
+              txt = ''
+              if vtts:
+                  seen = set(); lines = []
+                  for ln in open(vtts[0], encoding='utf-8', errors='replace'):
+                      ln = ln.strip()
+                      if not ln or ln.startswith(('WEBVTT', 'Kind:', 'Language:', 'NOTE')) or '-->' in ln: continue
+                      ln = re.sub(r'<[^>]+>', '', ln)
+                      if ln and ln not in seen: seen.add(ln); lines.append(ln)
+                  txt = ' '.join(lines)
+              meta = f"title: {info.get('title')}\nchannel: {info.get('channel')}\ndate: {info.get('upload_date')}\nviews: {info.get('view_count')}\nduration_s: {info.get('duration')}\nurl: https://www.youtube.com/watch?v={vid}\nhas_transcript: {bool(txt)}\n\n"
+              open(f'transcripts/{vid}.txt', 'w').write(meta + txt); out.append((vid, info.get('title'), len(txt)))
+          open('transcripts/_index.tsv', 'w').write('\n'.join(f'{a}\t{c}\t{b}' for a, b, c in out) + '\n')
+          print(len(out), 'videos;', sum(1 for _, _, c in out if c > 0), 'with transcript')
+          PY
+          rm -rf transcripts/raw
+      - name: save
+        run: |
+          git config user.name transcripts; git config user.email transcripts@users.noreply.github.com
+          git add transcripts
+          git diff --cached --quiet && { echo "nothing new"; exit 0; }
+          git commit -q -m "transcripts $(date -u +%F)"
+          ok=0; for i in 1 2 3 4 5 6; do git pull --rebase -q && git push -q && ok=1 && break; git rebase --abort 2>/dev/null; sleep $((RANDOM % 20 + 5)); done; [ $ok = 1 ]
