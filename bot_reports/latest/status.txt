@@ -1,4 +1,4 @@
-snapshot 2026-11-05 23:10:02.344805+00:00 UTC (intraday)
+snapshot 2026-11-06 00:38:18.945814+00:00 UTC (daily)
 btcshadow: active
 btccollector: active
 disk used 8%, free 113.4 GB
