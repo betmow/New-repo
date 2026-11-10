@@ -1,10 +1,13 @@
-snapshot 2026-11-10 13:10:01.564018+00:00 UTC (intraday)
+snapshot 2026-11-10 14:10:02.301061+00:00 UTC (intraday)
 btcshadow: active
 btccollector: active
-disk used 8%, free 113.2 GB
+disk used 11%, free 109.8 GB
 crontab:
 10 0 * * * cd /root/btc-shadow && /root/btc-shadow/venv/bin/python rollup_push.py >> /root/btc-shadow/rollup.log 2>&1
 22 * * * * cd /root/btc-shadow && /root/btc-shadow/venv/bin/python watchdog.py quick  >> /root/btc-shadow/watchdog/cron.log 2>&1
 37 0 * * * cd /root/btc-shadow && /root/btc-shadow/venv/bin/python watchdog.py daily  >> /root/btc-shadow/watchdog/cron.log 2>&1
 5 8 * * 6 cd /root/btc-shadow && /root/btc-shadow/venv/bin/python watchdog.py weekly >> /root/btc-shadow/watchdog/cron.log 2>&1
 10 23,6,7,13,14 * * * cd /root/btc-shadow && /root/btc-shadow/venv/bin/python snap_push.py >> /root/btc-shadow/watchdog/cron.log 2>&1
+
+2,17,32,47 * * * * cd /root/btc753 && venv/bin/python v753/shadow_logger.py --bot-dir /root/btc753/shadow_data --out-dir /root/btc753/v753_data --since 2026-11-10 >> v753_data/logger.log 2>&1; venv/bin/python v753/v753_alerts.py --out-dir /root/btc753/v753_data --env /root/btc753/.env >> v753_data/alerts.log 2>&1
+50 7 * * 6 cd /root/btc753 && venv/bin/python v753/run_monitor.py --out-dir v753_data >> v753_data/monitor.log 2>&1
