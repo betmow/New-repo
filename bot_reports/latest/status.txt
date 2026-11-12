@@ -1,7 +1,7 @@
-snapshot 2026-11-12 00:38:31.494909+00:00 UTC (daily)
+snapshot 2026-11-12 06:10:02.394222+00:00 UTC (intraday)
 btcshadow: active
 btccollector: active
-disk used 11%, free 109.8 GB
+disk used 11%, free 109.7 GB
 crontab:
 10 0 * * * cd /root/btc-shadow && /root/btc-shadow/venv/bin/python rollup_push.py >> /root/btc-shadow/rollup.log 2>&1
 22 * * * * cd /root/btc-shadow && /root/btc-shadow/venv/bin/python watchdog.py quick  >> /root/btc-shadow/watchdog/cron.log 2>&1
