@@ -1,0 +1,7 @@
+v753 snapshot 2026-11-13 17:11:54 UTC
+btc753: active
+btcshadow: active
+disk used 12%, free 109.4 GB
+cron v753 lines:
+2,17,32,47 * * * * cd /root/btc753 && venv/bin/python v753/shadow_logger.py --bot-dir /root/btc753/shadow_data --out-dir /root/btc753/v753_data --since 2026-11-10 >> v753_data/logger.log 2>&1; venv/bin/python v753/v753_alerts.py --out-dir /root/btc753/v753_data --env /root/btc753/.env >> v753_data/alerts.log 2>&1
+50 7 * * 6 cd /root/btc753 && venv/bin/python v753/run_monitor.py --out-dir v753_data >> v753_data/monitor.log 2>&1
