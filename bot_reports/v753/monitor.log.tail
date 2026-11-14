@@ -1,0 +1,62 @@
+/root/btc753/v753/edge_monitor.py:117: RuntimeWarning: overflow encountered in exp
+  th = 0.5 * (lo + hi); w = np.exp(th * (x - x.max())); m = (w * x).sum() / w.sum()
+/root/btc753/venv/lib/python3.12/site-packages/numpy/_core/_methods.py:49: RuntimeWarning: invalid value encountered in reduce
+  return umr_sum(a, axis, dtype, out, keepdims, initial, where)
+/root/btc753/v753/edge_monitor.py:117: RuntimeWarning: invalid value encountered in scalar divide
+  th = 0.5 * (lo + hi); w = np.exp(th * (x - x.max())); m = (w * x).sum() / w.sum()
+
+===== profile v751: closed shadow trades 15 ({'trend': 14, 'RE': 1})
+          group  n_live  live_mean  ref_mean  cusum  cusum_h  sprt_llr  sprt_A_cal  dd_now  dd_now_p status                                        reasons
+            ALL      15     -0.377     0.623 10.323   53.101     1.946       8.633   6.579     0.891  GREEN                                               
+        kind=R1       0        NaN     0.143    NaN      NaN       NaN         NaN     NaN       NaN   GREY insufficient reference (<20) or no live trades
+        kind=RE       1     -0.187     0.531  0.453    5.750     0.158       2.773   0.000     1.000   GREY                                               
+     kind=trend      14     -0.390     0.811 11.139   50.958     1.847       7.565   6.392     0.913  GREEN                                               
+      sleeve=R1       0        NaN     0.143    NaN      NaN       NaN         NaN     NaN       NaN   GREY insufficient reference (<20) or no live trades
+      sleeve=RE       1     -0.187     0.531  0.453    5.727     0.158       2.773   0.000     1.000   GREY                                               
+sleeve=T150@144       0        NaN     0.620    NaN      NaN       NaN         NaN     NaN       NaN   GREY insufficient reference (<20) or no live trades
+sleeve=T150@240       0        NaN     0.234    NaN      NaN       NaN         NaN     NaN       NaN   GREY insufficient reference (<20) or no live trades
+ sleeve=T150@72       0        NaN     1.102    NaN      NaN       NaN         NaN     NaN       NaN   GREY insufficient reference (<20) or no live trades
+ sleeve=T30@144       5     -0.420     1.128  4.921   12.547     0.901       2.773   2.411     0.377   GREY                                               
+ sleeve=T30@240       4     -0.209     0.673  2.184    5.824     0.506       2.773   1.148     0.777   GREY                                               
+  sleeve=T30@72       5     -0.504     1.063  5.180   20.694     0.623       2.773   2.832     0.878   GREY                                               
+sleeve=T330@144       0        NaN     0.207    NaN      NaN       NaN         NaN     NaN       NaN   GREY insufficient reference (<20) or no live trades
+sleeve=T330@240       0        NaN     0.188    NaN      NaN       NaN         NaN     NaN       NaN   GREY insufficient reference (<20) or no live trades
+ sleeve=T330@72       0        NaN     0.371    NaN      NaN       NaN         NaN     NaN       NaN   GREY insufficient reference (<20) or no live trades
+         htf=ON       8     -0.799     1.676 13.096   47.411     2.226       7.292   5.128     0.898   GREY                                               
+        htf=OFF       6      0.155     0.119  0.000   18.025    -0.101       2.820   0.000     1.000   GREY                                               
+       oi_hi=ON       0        NaN     1.282    NaN      NaN       NaN         NaN     NaN       NaN   GREY insufficient reference (<20) or no live trades
+      oi_hi=OFF      14     -0.390     0.670 10.153   38.067     2.081       6.821   6.392     0.659  GREEN                                               
+       flagC=ON       2     -1.474     2.886  5.834   26.858     1.066       4.347   1.684     0.909   GREY                                               
+      flagC=OFF      12     -0.209     0.553  5.830   41.460     0.933       6.204   3.444     0.999  GREEN                                               
+     asia_m=1.5       0        NaN     1.659    NaN      NaN       NaN         NaN     NaN       NaN   GREY insufficient reference (<20) or no live trades
+     asia_m=0.5       6      0.155     0.215  0.000   15.246    -0.087       3.190   0.000     1.000   GREY                                               
+
+OVERALL v751 (ALL row): GREEN  |  trend book: GREEN  ->  keep the sizing of this profile
+
+===== profile v753: closed shadow trades 16 ({'trend': 15, 'RE': 1})
+          group  n_live  live_mean  ref_mean  cusum  cusum_h  sprt_llr  sprt_A_cal  dd_now  dd_now_p status                                        reasons
+            ALL      16     -0.454     0.706 12.917   58.642     3.023      11.211   8.198     0.649  GREEN                                               
+        kind=R1       0        NaN     0.166    NaN      NaN       NaN         NaN     NaN       NaN   GREY insufficient reference (<20) or no live trades
+        kind=RE       1     -0.562     2.252  1.687   15.317     0.215       2.773   0.000     1.000   GREY                                               
+     kind=trend      15     -0.447     0.804 12.733   53.830     2.987      10.833   7.636     0.662  GREEN                                               
+      sleeve=R1       0        NaN     0.166    NaN      NaN       NaN         NaN     NaN       NaN   GREY insufficient reference (<20) or no live trades
+      sleeve=RE       1     -0.562     2.252  1.687   15.317     0.215       2.773   0.000     1.000   GREY                                               
+sleeve=T150@144       0        NaN     0.818    NaN      NaN       NaN         NaN     NaN       NaN   GREY insufficient reference (<20) or no live trades
+sleeve=T150@240       0        NaN     0.464    NaN      NaN       NaN         NaN     NaN       NaN   GREY insufficient reference (<20) or no live trades
+ sleeve=T150@72       0        NaN     0.857    NaN      NaN       NaN         NaN     NaN       NaN   GREY insufficient reference (<20) or no live trades
+ sleeve=T30@144       5     -0.447     1.172  5.164   11.931     1.120       2.773   2.546     0.312   GREY                                               
+ sleeve=T30@240       5     -0.447     1.203  5.244   11.281     1.097       2.773   2.546     0.272   GREY                                               
+  sleeve=T30@72       5     -0.447     0.701  3.987   14.020     0.713       2.773   2.546     0.700   GREY                                               
+sleeve=T330@144       0        NaN     0.580    NaN      NaN       NaN         NaN     NaN       NaN   GREY insufficient reference (<20) or no live trades
+sleeve=T330@240       0        NaN     0.342    NaN      NaN       NaN         NaN     NaN       NaN   GREY insufficient reference (<20) or no live trades
+ sleeve=T330@72       0        NaN     0.599    NaN      NaN       NaN         NaN     NaN       NaN   GREY insufficient reference (<20) or no live trades
+         htf=ON       9     -0.848     1.507 14.419   47.875     3.477      10.165   5.952     0.838   GREY                                               
+        htf=OFF       6      0.155     0.087  0.000   13.837    -0.157       2.973   0.000     1.000   GREY                                               
+       oi_hi=ON       0        NaN     1.311    NaN      NaN       NaN         NaN     NaN       NaN   GREY insufficient reference (<20) or no live trades
+      oi_hi=OFF      15     -0.447     0.623 11.377   35.704     3.109       8.347   7.636     0.357  GREEN                                               
+       flagC=ON       3     -1.684     2.468  8.755   29.349     2.127       6.430   3.369     0.664   GREY                                               
+      flagC=OFF      12     -0.138     0.525  4.801   38.960     1.078       8.329   2.583     1.000  GREEN                                               
+     asia_m=1.5       0        NaN     1.412    NaN      NaN       NaN         NaN     NaN       NaN   GREY insufficient reference (<20) or no live trades
+     asia_m=0.5       6      0.155     0.171  0.000   11.750    -0.171       3.836   0.000     1.000   GREY                                               
+
+OVERALL v753 (ALL row): GREEN  |  trend book: GREEN  ->  keep the sizing of this profile
