@@ -1,0 +1,5 @@
+v7.5.3 data check 2026-11-15 11:08:03Z: PASS
+OK   1m bars last 50 h: 2970 compared, 0 differ, 0 missing
+OK   daily bars last 10 days: 9 compared, 0 differ
+OK   OI cache: 8640 snapshots over 30.0 days, 0 gaps, 0 zeros, last 2026-11-15 11:05:00+00:00
+OK   re-sizing of 8 recent v7.5.3 rows on fresh data: 0 differences
