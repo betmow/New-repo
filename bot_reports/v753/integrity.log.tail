@@ -28,3 +28,8 @@ OK   1m bars last 50 h: 2970 compared, 0 differ, 0 missing
 OK   daily bars last 10 days: 9 compared, 0 differ
 OK   OI cache: 8638 snapshots over 30.0 days, 0 gaps, 0 zeros, last 2026-11-18 08:30:00+00:00
 OK   re-sizing of 0 recent v7.5.3 rows on fresh data: 0 differences
+v7.5.3 data check 2026-11-18 20:40:02Z: PASS
+OK   1m bars last 50 h: 2970 compared, 0 differ, 0 missing
+OK   daily bars last 10 days: 9 compared, 0 differ
+OK   OI cache: 8638 snapshots over 30.0 days, 0 gaps, 0 zeros, last 2026-11-18 20:30:00+00:00
+OK   re-sizing of 0 recent v7.5.3 rows on fresh data: 0 differences
