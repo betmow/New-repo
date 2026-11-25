@@ -1,4 +1,4 @@
-snapshot 2026-11-25 14:10:02.420573+00:00 UTC (intraday)
+snapshot 2026-11-25 23:10:01.944781+00:00 UTC (intraday)
 btcshadow: active
 btccollector: active
 disk used 12%, free 108.9 GB
@@ -9,9 +9,12 @@ crontab:
 5 8 * * 6 cd /root/btc-shadow && /root/btc-shadow/venv/bin/python watchdog.py weekly >> /root/btc-shadow/watchdog/cron.log 2>&1
 10 23,6,7,13,14 * * * cd /root/btc-shadow && /root/btc-shadow/venv/bin/python snap_push.py >> /root/btc-shadow/watchdog/cron.log 2>&1
 
-2,17,32,47 * * * * cd /root/btc753 && venv/bin/python v753/shadow_logger.py --bot-dir /root/btc753/shadow_data --out-dir /root/btc753/v753_data --since 2026-11-10 >> v753_data/logger.log 2>&1; venv/bin/python v753/v753_alerts.py --out-dir /root/btc753/v753_data --env /root/btc753/.env >> v753_data/alerts.log 2>&1
+2,17,32,47 * * * * cd /root/btc753 && venv/bin/python v753/shadow_logger.py --bot-dir /root/btc753/shadow_data --out-dir /root/btc753/v753_data --since 2026-11-25T14:45 >> v753_data/logger.log 2>&1; venv/bin/python v753/v753_alerts.py --out-dir /root/btc753/v753_data --env /root/btc753/.env >> v753_data/alerts.log 2>&1
 50 7 * * 6 cd /root/btc753 && venv/bin/python v753/run_monitor.py --out-dir v753_data >> v753_data/monitor.log 2>&1
 
 14 23,6,7,13,14,17 * * * cd /root/btc-shadow && venv/bin/python /root/btc753/v753_push.py >> /root/btc753/v753_data/push.log 2>&1
-40 8,20 * * * cd /root/btc753 && venv/bin/python v753/integrity_check.py --bot-dir /root/btc753/shadow_data --out-dir v753_data --since 2026-11-10 --env /root/btc753/.env >> v753_data/integrity.log 2>&1
-40 3 * * 0 cd /root/btc753 && venv/bin/python v753/integrity_check.py --deep --bot-dir /root/btc753/shadow_data --out-dir v753_data --since 2026-11-10 --env /root/btc753/.env >> v753_data/integrity.log 2>&1
+40 8,20 * * * cd /root/btc753 && venv/bin/python v753/integrity_check.py --bot-dir /root/btc753/shadow_data --out-dir v753_data --since 2026-11-25T14:45 --env /root/btc753/.env >> v753_data/integrity.log 2>&1
+40 3 * * 0 cd /root/btc753 && venv/bin/python v753/integrity_check.py --deep --bot-dir /root/btc753/shadow_data --out-dir v753_data --since 2026-11-25T14:45 --env /root/btc753/.env >> v753_data/integrity.log 2>&1
+25 9,21 * * * cd /root/btc753 && venv/bin/python v753/parity_audit.py --bot-dir /root/btc753/shadow_data --out-dir v753_data --since 2026-11-25T14:45 --env /root/btc753/.env > /dev/null 2>> v753_data/parity.log
+3,18,33,48 * * * * cd /root/btc753 && venv/bin/python v753/v7532_daily.py --bot-dir /root/btc753/shadow_data --out-dir /root/btc753/v753_data --env /root/btc753/.env >> v753_data/daily.log 2>&1
+27 * * * * cd /root/btc753 && venv/bin/python v7532_watch.py >> v753_data/watch.log 2>&1
