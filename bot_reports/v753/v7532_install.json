@@ -1,0 +1,17 @@
+{
+ "start": "2026-11-25T14:45",
+ "installed": "2026-11-25 17:54:15Z",
+ "archived": {
+  "v753_shadow_log.csv": "v753_shadow_log_archive_20261125.csv",
+  "v751_shadow_log.csv": "v751_shadow_log_archive_20261125.csv",
+  "v753_alerts_sent.json": "v753_alerts_sent_archive_20261125.json"
+ },
+ "schedule_changes": [
+  "line 7 (logger + alerts): --since 2026-11-10 -> 2026-11-25T14:45",
+  "line 11 (data check): --since 2026-11-10 -> 2026-11-25T14:45",
+  "line 12 (data check): --since 2026-11-10 -> 2026-11-25T14:45",
+  "line 13 ADDED (self-check, 09:25 and 21:25 UTC)",
+  "line 14 ADDED (daily check, every 15 minutes; it sends at 07:00 and 18:00 Rome time)"
+ ],
+ "rolled_back": false
+}
